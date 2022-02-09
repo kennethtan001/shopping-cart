@@ -52,7 +52,7 @@ tax = 0
 now = datetime.datetime.now()
 
 load_dotenv() #> loads contents of the .env file into the script's environment
-tax_rate = os.getenv("TAX_RATE") # reads the variable from the environment
+tax_rate = float(os.getenv("TAX_RATE")) # reads the variable from the environment
 
 while (response.upper() != "DONE"):
     response = input("Please input a product identifier: ")
