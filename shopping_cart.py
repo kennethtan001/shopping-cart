@@ -3,6 +3,8 @@
 from itertools import product
 from urllib import response
 import datetime
+import os
+from dotenv import load_dotenv
 
 
 products = [
@@ -49,6 +51,9 @@ subtotal = 0
 tax = 0
 now = datetime.datetime.now()
 
+load_dotenv() #> loads contents of the .env file into the script's environment
+tax_rate = os.getenv("TAX_RATE") # reads the variable from the environment
+
 while (response.upper() != "DONE"):
     response = input("Please input a product identifier: ")
     if response.upper() != "DONE":
@@ -74,7 +79,7 @@ for i in range(0, len(product_ids)):
             print("#>  ... " + p["name"] + " (" + str(to_usd(p["price"])) + ")")
             subtotal = subtotal + p["price"]
 
-tax = subtotal * 0.0875
+tax = subtotal * tax_rate
 total = subtotal + tax
 
 #> ---------------------------------
