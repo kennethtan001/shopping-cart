@@ -44,6 +44,8 @@ def to_usd(my_price):
 # TODO: write some Python code here to produce the desired output
 response = ""
 product_ids = []
+subtotal = 0
+tax = 0
 
 while (response.upper() != "DONE"):
     response = input("Please input a product identifier: ")
@@ -57,7 +59,13 @@ for p in products:
     for i in range(0, len(product_ids)):
         if p["id"] == product_ids[i]:
             print(" + " + p["name"] + " (" + str(to_usd(p["price"])) + ")")
+            subtotal = subtotal + p["price"]
+tax = subtotal * 0.0875
+total = subtotal + tax
 
+print(subtotal)
+print(tax)
+print(total)
 
 #print(product_ids)
 #print(products)
