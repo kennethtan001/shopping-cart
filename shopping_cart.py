@@ -2,6 +2,7 @@
 
 from itertools import product
 from urllib import response
+import datetime
 
 
 products = [
@@ -46,6 +47,7 @@ response = ""
 product_ids = []
 subtotal = 0
 tax = 0
+now = datetime.datetime.now()
 
 while (response.upper() != "DONE"):
     response = input("Please input a product identifier: ")
@@ -55,17 +57,34 @@ while (response.upper() != "DONE"):
 for i in range(0, len(product_ids)):
     product_ids[i] = int(product_ids[i])
 
-for p in products:
-    for i in range(0, len(product_ids)):
+
+print("#> ---------------------------------")
+print("#> GREEN FOODS GROCERY")
+print("#> WWW.GREEN-FOODS-GROCERY.COM")
+print("#> ---------------------------------")
+
+print("#> CHECKOUT AT: " + now.strftime("%Y-%m-%d %I:%M %p"))
+#> CHECKOUT AT: 2020-02-07 03:54 PM
+print("#> ---------------------------------")
+print("#> SELECTED PRODUCTS:")
+
+for i in range(0, len(product_ids)):
+    for p in products:
         if p["id"] == product_ids[i]:
-            print(" + " + p["name"] + " (" + str(to_usd(p["price"])) + ")")
+            print("#>  ... " + p["name"] + " (" + str(to_usd(p["price"])) + ")")
             subtotal = subtotal + p["price"]
+
 tax = subtotal * 0.0875
 total = subtotal + tax
 
-print(subtotal)
-print(tax)
-print(total)
+#> ---------------------------------
+print("#> SUBTOTAL: " + str(to_usd(subtotal)))
+print("#> TAX: " + str(to_usd(tax)))
+print("#> TOTAL: " + str(to_usd(total)))
+print("#> ---------------------------------")
+print("#> THANKS, SEE YOU AGAIN SOON!")
+print("#> ---------------------------------")
+
 
 #print(product_ids)
 #print(products)
