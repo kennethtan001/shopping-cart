@@ -4,6 +4,7 @@ from itertools import product
 from urllib import response
 import datetime
 import os
+from xmlrpc.client import ResponseError
 from dotenv import load_dotenv
 import pandas as pd
 
@@ -54,14 +55,30 @@ product_ids = []
 subtotal = 0
 tax = 0
 now = datetime.datetime.now()
+response_validation = False
+ids = []
 
 load_dotenv() #> loads contents of the .env file into the script's environment
 tax_rate = float(os.getenv("TAX_RATE")) # reads the variable from the environment
 
+for p in products_csv:
+    ids.append(p["id"])    
+
 while (response.upper() != "DONE"):
     response = input("Please input a product identifier: ")
+    if (response.upper() != "DONE"):
+        for i in ids:
+            if int(response) == i:
+                response_validation = True
+        while response_validation == False:
+            print("Hey, are you sure that product identifier is correct? Please try again!")
+            response = input("Please input a product identifier: ")
+            for i in ids:
+                if int(response) == i:
+                    response_validation = True
     if response.upper() != "DONE":
         product_ids.append(response)
+    response_validation = False
 
 for i in range(0, len(product_ids)):
     product_ids[i] = int(product_ids[i])
