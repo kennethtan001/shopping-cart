@@ -32,23 +32,31 @@ pip install -r requirements.txt
 
 The program asks the user (a checkout clerk) to input one or more product identifiers, then looks up the prices for each, then prints an itemized customer receipt including the total amount owed.
 
-Instead of using a hard-coded products variable, download or copy the contents of the provided "products.csv" file into your project directory in a new subdirectory called "data" (so the path to the CSV file should be "data/products.csv"). Then update your code to read the products from this CSV file.
+The user can use their own custom CSV file inventory. To acheive this, there is a file in the repository called "data/default_products.csv"- copy this provided file into your local repository as "data/products.csv", where the program will be looking for it.
 
-Ideally we'll allow the user to use their own custom CSV file inventory. To acheive this, save a copy of the provided "products.csv" file in your repo as "data/default_products.csv" and provide instructions in the README telling someone to copy this provided file into their local repo as "data/products.csv", where the program will be looking for it.
+The program should prompt the user to input the identifier of each shopping cart item, one at a time.
 
-The program should prompt the checkout clerk to input the identifier of each shopping cart item, one at a time.
+If there are no products matching the given identifier, the program will validate by asking, "Hey, are you sure that product identifier is correct? Please try again!" At this point, the user can input a valid identifier.
 
-When the clerk inputs a product identifier, the program should validate it, displaying a helpful message like "Hey, are you sure that product identifier is correct? Please try again!" if there are no products matching the given identifier.
+When there are no more shopping cart items, the user should input the word `DONE` to indicate they are done with the process. 
 
-At any time the clerk should be able to indicate there are no more shopping cart items by inputting the word `DONE` or otherwise indicating they are done with the process. Before asking for identifiers, the program should provide clear instructions to the user about how to use the "DONE" keyword.
+After the user indicates there are no more items, the program will print a custom receipt on the screen.
 
-After the clerk indicates there are no more items, the program should print a custom receipt on the screen. The receipt should include the following components:
+### Game Simulation
 
-  + A grocery store name of your choice
-  + A grocery store phone number and/or website URL and/or address of choice
-  + The date and time of the beginning of the checkout process, formatted in a human-friendly way (e.g. `2020-02-07 03:54 PM`)
-  + The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. `$3.50`, etc.)
-  + The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. `$19.47`), calculated as the sum of their prices
-  + The amount of tax owed (e.g. `$1.70`), calculated by multiplying the total cost by a New York City sales tax rate of 8.75% (for the purposes of this project, groceries are not exempt from sales tax)
-  + The total amount owed, formatted as US dollars and cents (e.g. `$21.17`), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
-  + A friendly message thanking the customer and/or encouraging the customer to shop again
+User has choice to pass in name as environment variables through a ".env" in the project's root directory. A ".env" file is provided in the repository. Tax rate is the environment variable declared here, and the user can edit the ".env" file to adjust the tax rate.
+
+Sample ".env" file contents:
+
+```sh
+# this is the ".env" file...
+ 
+TAX_RATE=0.0875
+```
+### Run Program
+
+Run the program with the following command.
+
+```sh
+python shopping_cart.py
+```
