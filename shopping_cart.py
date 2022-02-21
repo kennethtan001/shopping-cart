@@ -62,7 +62,9 @@ load_dotenv() #> loads contents of the .env file into the script's environment
 tax_rate = float(os.getenv("TAX_RATE")) # reads the variable from the environment
 
 for p in products_csv:
-    ids.append(p["id"])    
+    ids.append(p["id"])  
+
+print("Please input product identifiers for all products in the shopping cart. Input 'DONE' when there are no items left.")  
 
 while (response.upper() != "DONE"):
     response = input("Please input a product identifier: ")
