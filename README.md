@@ -44,7 +44,7 @@ After the user indicates there are no more items, the program will print a custo
 
 ### Game Simulation
 
-User has choice to pass in name as environment variables through a ".env" in the project's root directory. A ".env" file is provided in the repository. Tax rate is the environment variable declared here, and the user can edit the ".env" file to adjust the tax rate.
+User has choice to pass in environment variables through a ".env" in the project's root directory. The user can create an environment variable for tax rate, and the user can edit the ".env" file to adjust the tax rate.
 
 Sample ".env" file contents:
 
